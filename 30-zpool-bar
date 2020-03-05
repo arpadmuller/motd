@@ -2,17 +2,13 @@
 
 # config
 max_usage=90
-bar_width=50
+bar_width=74
 # colors
 white="\e[39m"
 green="\e[1;32m"
 red="\e[1;31m"
 dim="\e[2m"
 undim="\e[0m"
-
-# zpool status
-printf "\nzpool status:\n"
-zpool status -x | sed -e 's/^/  /'
 
 # zpool usage
 mapfile -t zpools < <(zpool list -Ho name,cap,size)
@@ -43,3 +39,6 @@ for line in "${zpools[@]}"; do
     echo "${line}" | awk '{ printf("%-30s%+3s used out of %+5s\n", $1, $2, $3); }' | sed -e 's/^/  /'
     echo -e "${bar}" | sed -e 's/^/  /'
 done
+
+zpool status -x | sed -e 's/^/  /'
+

@@ -2,7 +2,7 @@
 
 # config
 max_usage=90
-bar_width=50
+bar_width=74
 # colors
 white="\e[39m"
 green="\e[1;32m"
